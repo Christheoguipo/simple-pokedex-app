@@ -1,8 +1,8 @@
-## Project description
+## Project description:
 
-## How to get the project running
+## How to get the project running?
 
-## Project dependencies (e.g., JavaScript version, ESLint rules)
+## Project dependencies (e.g., JavaScript version, ESLint rules):
 
-## Which API the project uses
+## Which API the project uses?
   - Pokemon API
