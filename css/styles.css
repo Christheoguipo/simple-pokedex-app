@@ -1,0 +1,11 @@
+body {
+  font-size: 32px;
+}
+
+.pokemon-big {
+  color: brown;
+}
+
+.pokemon-big:hover {
+  font-weight: bold;
+}
