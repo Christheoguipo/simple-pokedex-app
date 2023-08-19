@@ -28,26 +28,34 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  function addListItem(pokemon) {
+    let unorderedList = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    listItem.classList.add('pokemon-list__item');
+
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('button');
+    listItem.appendChild(button);
+    unorderedList.appendChild(listItem);
+
+    button.addEventListener('click', () => showDetails(pokemon));
+  }
+
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem,
   }
 })();
 
-let bigPokemon = '';
-let bigPokemonClass = '';
+// This will display the pokemon details to the console.
+function showDetails(pokemon) {
+  console.log(pokemon.name);
+}
 
 // This loops through and writes all the Pokemons from the repository to the list (their name and height)
 pokemonRepository.getAll().forEach(function (pokemon) {
 
-  // This highlights big pokemons (height > 2.0)  
-  if (pokemon.height > 2.0) {
-    bigPokemon = '- Wow, that\'s big!'
-    bigPokemonClass = 'class=pokemon-big';
-  }
-
-  document.write(`<div ${bigPokemonClass}>${pokemon.name} (${pokemon.height}) ${bigPokemon} </div>`);
-
-  bigPokemon = '';
-  bigPokemonClass = '';
+  pokemonRepository.addListItem(pokemon);
 });
