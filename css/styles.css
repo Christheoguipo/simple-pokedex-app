@@ -11,19 +11,18 @@ body {
   min-width: 300px;
 }
 
-.button {
+.pokemon-button {
   text-align: center;
   font-size: medium;
   width: 100%;
   height: 50px;
-  border-radius: 0;
   border: 2px solid black;
-  margin: 2px;
+  margin: 2px 0;
   background-color: var(--primary-color);
   color: white;
 }
-
-.button:hover {
+ 
+.pokemon-button:hover {
   background-color: var(--darker-primary-color);
 }
 
@@ -36,8 +35,56 @@ body {
   list-style: none;
 }
 
+#modal-container,
 .hide {
   display: none;
+}
+
+#modal-container.is-visible {
+  position: fixed;
+  padding: 19px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  
+  /* to show it above other content */
+  z-index: 999; 
+  
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto; 
+  
+  /* this is used to center the modal */
+  display: grid;
+  text-align: center;
+}
+
+.modal {
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 15px;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.modal-close {
+  float: right;
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  color: #777;
+  text-decoration: underline;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media all and (max-width: 510px) {
