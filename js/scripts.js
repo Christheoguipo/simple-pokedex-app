@@ -1,4 +1,3 @@
-
 // This IIFE wraps the pokemonList to avoid any accidental changes 
 let pokemonRepository = (function () {
 
@@ -21,7 +20,7 @@ let pokemonRepository = (function () {
 
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('button');
+    button.classList.add('pokemon-button');
     listItem.appendChild(button);
     unorderedList.appendChild(listItem);
 
@@ -37,7 +36,7 @@ let pokemonRepository = (function () {
     }).then(function (json) {
       json.results.forEach(function (item) {
         let pokemon = {
-          name: item.name,
+          name: String(item.name).toUpperCase(),
           detailsUrl: item.url
         };
         add(pokemon);
@@ -71,13 +70,13 @@ let pokemonRepository = (function () {
       console.error(e);
     });
   }
-  
+
   let loadingMessage = document.querySelector('#message');
 
   function hideShowLoadingMessage() {
     loadingMessage.classList.toggle('hide');
   }
- 
+
   return {
     add: add,
     getAll: getAll,
@@ -86,6 +85,108 @@ let pokemonRepository = (function () {
     loadDetails: loadDetails
   }
 })();
+
+// Modal IIFE
+let modal = (function () {
+  let modalContainer = document.querySelector('#modal-container');
+
+  let dialogPromiseReject; // This can be set later, by showDialog
+
+  function showModal(pokemon) {
+
+    // Clear all existing modal content
+    modalContainer.innerHTML = '';
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    // Add the new modal content
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = pokemon.name;
+
+    let contentElement = document.createElement('p');
+    contentElement.innerText = 'Height: ' + pokemon.height;
+
+    let imageElement = document.createElement('img');
+    imageElement.src = pokemon.imageUrl;
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modal.appendChild(imageElement);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+
+    modalContainer.addEventListener('click', (e) => {
+      // Since this is also triggered when clicking INSIDE the modal
+      // we only want to close if the user clicks directly on the overlay
+      let target = e.target;
+      if (target === modalContainer) {
+        hideModal();
+      }
+    })
+  }
+
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+
+    if (dialogPromiseReject) {
+      dialogPromiseReject();
+      dialogPromiseReject = null;
+    }
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  })
+
+  // function showDialog(title, text) {
+  //   showModal(title, text);
+
+  //   // We want to add a confirm and cancel button to the modal
+  //   let modal = modalContainer.querySelector('.modal');
+
+  //   let confirmButton = document.createElement('button');
+  //   confirmButton.classList.add('modal-confirm');
+  //   confirmButton.innerText = 'Confirm';
+
+  //   let cancelButton = document.createElement('button');
+  //   cancelButton.classList.add('modal-cancel');
+  //   cancelButton.innerText = 'Cancel';
+
+  //   modal.appendChild(confirmButton);
+  //   modal.appendChild(cancelButton);
+
+  //   // We want to focus the confirmButton so that the user can simply press Enter
+  //   confirmButton.focus();
+
+  //   // Return a promise that resolves when confirmed, else rejects    
+  //   return new Promise((resolve, reject) => {
+  //     cancelButton.addEventListener('click', hideModal);
+
+  //     confirmButton.addEventListener('click', () => {
+  //       dialogPromiseReject = null; // Reset this
+  //       hideModal();
+  //       resolve();
+  //     });
+  //     //This can be used to reject from other functions
+  //     dialogPromiseReject = reject;
+  //   }) 
+  // }
+
+  return {
+    showModal: showModal,
+  }
+})();
+
 
 pokemonRepository.loadList().then(function () {
   // Now the data is loaded!
@@ -98,6 +199,6 @@ pokemonRepository.loadList().then(function () {
 // This function will display the pokemon details to the console.
 function showDetails(pokemon) {
   pokemonRepository.loadDetails(pokemon).then(function () {
-    console.log(pokemon);
+    modal.showModal(pokemon);
   });
 }
