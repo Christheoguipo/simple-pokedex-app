@@ -53,7 +53,7 @@ let pokemonRepository = (function () {
 
   // This function fetches the detail of a pokemon
   function loadDetails(item) {
-    
+
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
@@ -72,11 +72,9 @@ let pokemonRepository = (function () {
 
     // Add the new modal content
     let modalTitle = $('#pokemon-modal-label');
-    modalTitle.empty();
     modalTitle.text(pokemon.name);
 
-    let modalBody = $('.modal-body')
-    modalBody.empty();
+    let modalBody = $('.modal-body');
 
     let imageElement = $('<img></img>');
     imageElement.attr('src', pokemon.imageUrl);
@@ -119,3 +117,8 @@ function showDetails(pokemon) {
     pokemonRepository.displayDetails(pokemon);
   });
 }
+
+$('.modal').on('hidden.bs.modal', () => {
+  $('#pokemon-modal-label').empty();
+  $('.modal-body').empty();
+})
