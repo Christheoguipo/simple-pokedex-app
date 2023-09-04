@@ -1,5 +1,9 @@
 ## Project description:
-  - A simple Pokedex app.
+  - A simple Pokedex App.
+
+## How to use:
+  - Click on a Pokemon to show its details.
+  - Filter out Pokemons using the Search Bar. 
 
 ## Project dependencies:
   - jQuery v3.3.1
