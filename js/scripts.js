@@ -13,9 +13,12 @@ let pokemonRepository = (function () {
 
   // This function creates the <li> and <button> for every pokemon on the pokemonList
   function addListItem(pokemon) {
-    let unorderedList = document.querySelector(".list-group");
+    let unorderedList = document.querySelector(
+      ".list-group > .container > .row"
+    );
     let listItem = document.createElement("li");
     listItem.classList.add("list-group-item");
+    listItem.classList.add("col-md-3");
 
     let button = document.createElement("button");
     button.innerText = pokemon.name;
@@ -117,7 +120,16 @@ function showDetails(pokemon) {
   });
 }
 
+// Clears out the modal's body on close
 $(".modal").on("hidden.bs.modal", () => {
   $("#pokemon-modal-label").empty();
   $(".modal-body").empty();
+});
+
+// Filters the list of Pokemons
+$("#search").on("keyup", function () {
+  var value = $(this).val().toLowerCase();
+  $(".list-group *").filter(function () {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  });
 });
