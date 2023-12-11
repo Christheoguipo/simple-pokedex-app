@@ -1,14 +1,38 @@
-## Project description:
-  - A simple Pokedex App.
+# Simple Pokédex App
 
-## How to use:
-  - Click on a Pokemon to show its details.
-  - Filter out Pokemons using the Search Bar. 
+## Project Description
+Welcome to the Simple Pokédex App repository! This project is a straightforward and user-friendly Pokémon encyclopedia that allows users to explore information about various Pokémon in a clean and intuitive interface.
 
-## Project dependencies:
-  - jQuery v3.3.1
-  - Popper.js v1.14.7
-  - Bootstrap v4.3.1
+## Features
 
-## Which API the project uses?
-  - [Pokemon API](https://pokeapi.co/api/v2/pokemon/)
+- **Search**: Easily search for Pokémon by name to access detailed information.
+- **Responsive Design**: The app is designed to work seamlessly on various devices, from desktops to mobile phones.
+
+## Project Dependencies
+
+The Simple Pokédex App relies on the following technologies:
+
+- **HTML**: The structure of the web pages.
+- **CSS**: Styling for a visually appealing interface.
+- **JavaScript**: For dynamic interactions and fetching data.
+- **Pokémon API**: The app fetches Pokémon data from the [Pokémon API](https://pokeapi.co/).
+
+## Getting Started
+
+To get started with the Simple Pokédex App, follow these steps:
+
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/Christheoguipo/simple-pokedex-app.git
+    ```
+
+2. **Navigate to the Project Directory:**
+    ```bash
+    cd simple-pokedex-app
+    ```
+
+3. **Open `index.html` in Your Browser:**
+    Simply open the `index.html` file in your preferred web browser.
+
+4. **Explore and Enjoy:**
+    You are now ready to explore the world of Pokémon through the Simple Pokédex App!
