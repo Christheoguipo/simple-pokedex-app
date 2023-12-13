@@ -13,7 +13,7 @@ Welcome to the Simple Pokédex App repository! This project is a straightforward
 The Simple Pokédex App relies on the following technologies:
 
 - **HTML**: The structure of the web pages.
-- **CSS**: Styling for a visually appealing interface.
+- **CSS**: Interface styling.
 - **JavaScript**: For dynamic interactions and fetching data.
 - **Pokémon API**: The app fetches Pokémon data from the [Pokémon API](https://pokeapi.co/).
 
@@ -36,3 +36,5 @@ To get started with the Simple Pokédex App, follow these steps:
 
 4. **Explore and Enjoy:**
     You are now ready to explore the world of Pokémon through the Simple Pokédex App!
+
+You can also access the live app on https://christheoguipo.github.io/simple-pokedex-app/.
